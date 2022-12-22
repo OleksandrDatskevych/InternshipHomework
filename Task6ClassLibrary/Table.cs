@@ -32,15 +32,15 @@ namespace TableNS
 
         public void Assemble()
         {
-            if (IsAssembled)
-            {
-                Console.WriteLine($"Table {Name} has already been assembled");
-            }
-            else
+            if (!IsAssembled)
             {
                 Console.WriteLine("Assembling table...");
                 this.IsAssembled = true;
                 Console.WriteLine($"Table {Name} has been assembled");
+            }
+            else
+            {
+                Console.WriteLine($"Table {Name} has already been assembled");
             }
         }
     }

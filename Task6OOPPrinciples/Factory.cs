@@ -6,66 +6,182 @@ namespace FactoryNS
 {
     internal class Factory
     {
-        public Furniture[] furniture = new Furniture[5] {
-            new Table(),
-            new Chair(),
-            new Table("Epicenter", 80, 100, 150, 39.99f),
-            new Chair("New Line", 50, 60, 8.99f, false),
-            new Table("Table & Chair", 100, 100, 200, 35.99f)
-        };
+        //public Furniture[] furniture = new Furniture[5] {
+        //    new Table(),
+        //    new Chair(),
+        //    new Table("Epicenter", 80, 100, 150, 39.99f),
+        //    new Chair("New Line", 50, 60, 8.99f, false),
+        //    new Table("Table & Chair", 100, 100, 200, 35.99f)
+        //};
 
-        public void AssembleTable(Table table)
+        private Furniture[]? furniture;
+
+        public Furniture[]? Furnitures { get => furniture; private set => furniture = value; }
+
+        public Factory(bool isFilled)
+        {
+            if (isFilled)
+            {
+                furniture = new Furniture[5] {
+                    new Table(),
+                    new Chair(),
+                    new Table("Epicenter", 80, 100, 150, 39.99f),
+                    new Chair("New Line", 50, 60, 8.99f, false),
+                    new Table("Table & Chair", 100, 100, 200, 35.99f)
+                };
+            } else
+            {
+                furniture = null;
+            }
+        }
+        public Factory(Furniture[]? furniture)
+        {
+            Furnitures = furniture;
+        }
+
+        public static void AssembleTable(Table table)
         {
             table.Assemble();
         }
 
-        public int GetAmountOfFurniture()
+        public void ShowAmountOfFurniture()
         {
-            return furniture.Length;
+            if (Furnitures != null)
+                Console.WriteLine($"Amount of furniture in factory {Furnitures.Length}");
+            else
+                Console.WriteLine("No furniture in factory");
         }
 
         public void ListOfFurniture()
         {
-            for (int i = 0; i < furniture.Length; i++)
+            if (Furnitures != null)
             {
-                Console.WriteLine($"\nFurniture number: {i + 1}");
-                furniture[i].Print();
+                for (int i = 0; i < Furnitures.Length; i++)
+                {
+                    Console.WriteLine($"\nFurniture number: {i + 1}");
+                    Furnitures[i].Print();
+                }
+            } else
+            {
+                Console.WriteLine("No furniture in factory");
             }
         }
 
-        public void ListOfFurnitureByName(string name)
+        public void ListOfFurnitureByName()
         {
-            bool isFound = false;
-            for (int i = 0; i < furniture.Length; i++)
+            if (Furnitures != null)
             {
-                if (furniture[i].Name.ToUpper() == name.ToUpper())
+                Console.WriteLine("\nEnter a name of furniture to get the list of furniture by name");
+                string? name = Console.ReadLine();
+                bool isFound = false;
+                for (int i = 0; i < Furnitures.Length; i++)
                 {
-                    Console.WriteLine($"Furniture number: {i + 1}");
-                    isFound = true;
-                    furniture[i].Print();
+                    if (Furnitures[i].Name.ToUpper() == name.ToUpper())
+                    {
+                        Console.WriteLine($"Furniture number: {i + 1}");
+                        isFound = true;
+                        Furnitures[i].Print();
+                    }
                 }
-            }
-            if (!isFound)
+                if (!isFound)
+                {
+                    Console.WriteLine($"Furniture with name {name} were not found");
+                }
+            } else
             {
-                Console.WriteLine($"Furniture with name {name} were not found");
+                Console.WriteLine("No furniture in factory");
             }
         }
 
-        public void ListOfFurnitureByCost(float cost)
+        public void ListOfFurnitureByCost()
         {
-            bool isFound = false;
-            for (int i = 0; i < furniture.Length; i++)
+            if (Furnitures != null)
             {
-                if (furniture[i].Cost <= cost)
+                Console.WriteLine("\nEnter your estimated budget");
+                float cost = Convert.ToSingle(Console.ReadLine());
+                Console.WriteLine("List of furniture in factory:");
+                bool isFound = false;
+                for (int i = 0; i < Furnitures.Length; i++)
                 {
-                    Console.WriteLine($"Table number: {i + 1}");
-                    isFound = true;
-                    furniture[i].Print();
+                    if (Furnitures[i].Cost <= cost)
+                    {
+                        Console.WriteLine($"Table number: {i + 1}");
+                        isFound = true;
+                        Furnitures[i].Print();
+                    }
+                }
+                if (!isFound)
+                {
+                    Console.WriteLine($"Furniture with cost below {cost} were not found");
+                }
+            } else
+            {
+                Console.WriteLine("No furniture in factory");
+            }
+        }
+
+        public void AssembleTable()
+        {
+            if (Furnitures != null)
+            {
+                Console.WriteLine("\nEnter a number of table to assemble:");
+                int furnitureNumber = Convert.ToInt32(Console.ReadLine());
+                if (furnitureNumber <= Furnitures.Length && furnitureNumber > 0 && Furnitures[furnitureNumber - 1] is Table)
+                {
+                    Table table = (Table)Furnitures[furnitureNumber - 1];
+                    table.Assemble();
+                }
+                else if (this.Furnitures[furnitureNumber - 1] is not Table)
+                {
+                    Console.WriteLine($"This furniture is not a table and can't be assembled");
                 }
             }
-            if (!isFound)
+            else
             {
-                Console.WriteLine($"Furniture with cost below {cost} were not found");
+                Console.WriteLine("No furniture in factory");
+            }
+        }
+
+        public void FillFactory()
+        {
+            if (Furnitures == null)
+            {
+                Console.WriteLine("Enter amount of furniture to fill factory:");
+                uint amount = Convert.ToUInt32(Console.ReadLine());
+                Furnitures = new Furniture[amount];
+                for (int i = 0; i < amount; i++)
+                {
+                    int tableLength = 0;
+                    bool chairBack = false;
+                    Console.WriteLine($"Enter information about {i + 1} item:");
+                    Console.WriteLine("Is it table or chair?");
+                    string? furnType = Console.ReadLine();
+                    Console.WriteLine($"Enter name of {furnType}");
+                    string? furnName = Console.ReadLine();
+                    Console.WriteLine($"Enter width of {furnType}");
+                    int furnWidth = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine($"Enter height of {furnType}");
+                    int furnHeight = Convert.ToInt32(Console.ReadLine());
+                    if (furnType.ToUpper() == "TABLE")
+                    {
+                        Console.WriteLine("Enter length of table");
+                        tableLength = Convert.ToInt32(Console.ReadLine());
+                    } else if (furnType.ToUpper() == "CHAIR")
+                    {
+                        Console.WriteLine("Does this chair have a back? (true/false)");
+                        chairBack = Convert.ToBoolean(Console.ReadLine());
+                    }
+                    Console.WriteLine($"Enter cost of {furnType}");
+                    float furnCost = Convert.ToSingle(Console.ReadLine());
+                    if (furnType.ToUpper() == "TABLE")
+                        Furnitures[i] = new Table(furnName, furnWidth, furnHeight, tableLength, furnCost);
+                    else if (furnType.ToUpper() == "CHAIR")
+                        Furnitures[i] = new Chair(furnName, furnWidth, furnHeight, furnCost, chairBack);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Factory is already filled with furniture");
             }
         }
     }

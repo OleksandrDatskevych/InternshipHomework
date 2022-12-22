@@ -5,7 +5,7 @@
         private float cost;
         private int height;
         private int width;
-        private string name;
+        private string? name;
 
         public string Name { get => name; protected set => name = value; }
         public int Width { get => width; protected set => width = value; }
