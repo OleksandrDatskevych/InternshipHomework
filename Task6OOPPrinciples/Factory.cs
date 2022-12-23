@@ -6,14 +6,6 @@ namespace FactoryNS
 {
     internal class Factory
     {
-        //public Furniture[] furniture = new Furniture[5] {
-        //    new Table(),
-        //    new Chair(),
-        //    new Table("Epicenter", 80, 100, 150, 39.99f),
-        //    new Chair("New Line", 50, 60, 8.99f, false),
-        //    new Table("Table & Chair", 100, 100, 200, 35.99f)
-        //};
-
         private Furniture[]? furniture;
 
         public Furniture[]? Furnitures { get => furniture; private set => furniture = value; }
@@ -76,11 +68,18 @@ namespace FactoryNS
                 bool isFound = false;
                 for (int i = 0; i < Furnitures.Length; i++)
                 {
-                    if (Furnitures[i].Name.ToUpper() == name.ToUpper())
+                    if (name != null)
                     {
-                        Console.WriteLine($"Furniture number: {i + 1}");
-                        isFound = true;
-                        Furnitures[i].Print();
+                        if (Furnitures[i].Name.ToUpper() == name.ToUpper())
+                        {
+                            Console.WriteLine($"Furniture number: {i + 1}");
+                            isFound = true;
+                            Furnitures[i].Print();
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No name entered");
                     }
                 }
                 if (!isFound)
@@ -153,11 +152,19 @@ namespace FactoryNS
                 {
                     int tableLength = 0;
                     bool chairBack = false;
+                    string? furnType = null;
+                    string? furnName = null;
+
                     Console.WriteLine($"Enter information about {i + 1} item:");
-                    Console.WriteLine("Is it table or chair?");
-                    string? furnType = Console.ReadLine();
-                    Console.WriteLine($"Enter name of {furnType}");
-                    string? furnName = Console.ReadLine();
+                    do
+                    {
+                        Console.WriteLine("Is it table or chair?");
+                        furnType = Console.ReadLine();
+                    } while (furnType == null || furnType == "");
+                    do {
+                        Console.WriteLine($"Enter name of {furnType}");
+                        furnName = Console.ReadLine();
+                    } while (furnName == null || furnName == "");
                     Console.WriteLine($"Enter width of {furnType}");
                     int furnWidth = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine($"Enter height of {furnType}");
@@ -173,10 +180,24 @@ namespace FactoryNS
                     }
                     Console.WriteLine($"Enter cost of {furnType}");
                     float furnCost = Convert.ToSingle(Console.ReadLine());
+
                     if (furnType.ToUpper() == "TABLE")
-                        Furnitures[i] = new Table(furnName, furnWidth, furnHeight, tableLength, furnCost);
+                        if (furnName != null)
+                            Furnitures[i] = new Table(furnName, furnWidth, furnHeight, tableLength, furnCost);
+                        else
+                            Furnitures[i] = new Table("No name", furnWidth, furnHeight, tableLength, furnCost);
                     else if (furnType.ToUpper() == "CHAIR")
-                        Furnitures[i] = new Chair(furnName, furnWidth, furnHeight, furnCost, chairBack);
+                        if (furnName != null)
+                            Furnitures[i] = new Chair(furnName, furnWidth, furnHeight, furnCost, chairBack);
+                        else
+                            Furnitures[i] = new Chair("No name", furnWidth, furnHeight, furnCost, chairBack);
+                    else
+                    {
+                        if (furnName != null)
+                            Furnitures[i] = new Table(furnName, furnWidth, furnHeight, tableLength, furnCost);
+                        else
+                            Furnitures[i] = new Table("No name", furnWidth, furnHeight, tableLength, furnCost);
+                    }
                 }
             }
             else

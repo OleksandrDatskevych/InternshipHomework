@@ -7,7 +7,17 @@
         private int width;
         private string? name;
 
-        public string Name { get => name; protected set => name = value; }
+        public string Name
+        {
+            get
+            {
+                if (name == null)
+                    return "Name is null";
+                else
+                    return name;
+            }
+            set => name = value;
+        }
         public int Width { get => width; protected set => width = value; }
         public int Height { get => height; protected set => height = value; }
         public float Cost { get => cost; protected set => cost = value; }
