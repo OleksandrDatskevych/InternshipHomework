@@ -149,61 +149,85 @@ namespace FactoryNS
                 uint amount = Convert.ToUInt32(Console.ReadLine());
                 Furnitures = new Furniture[amount];
                 for (int i = 0; i < amount; i++)
-                {
-                    int tableLength = 0;
-                    bool chairBack = false;
-                    string? furnType = null;
-                    string? furnName = null;
-
-                    Console.WriteLine($"Enter information about {i + 1} item:");
-                    do
-                    {
-                        Console.WriteLine("Is it table or chair?");
-                        furnType = Console.ReadLine();
-                    } while (furnType == null || furnType == "");
-                    do {
-                        Console.WriteLine($"Enter name of {furnType}");
-                        furnName = Console.ReadLine();
-                    } while (furnName == null || furnName == "");
-                    Console.WriteLine($"Enter width of {furnType}");
-                    int furnWidth = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine($"Enter height of {furnType}");
-                    int furnHeight = Convert.ToInt32(Console.ReadLine());
-                    if (furnType.ToUpper() == "TABLE")
-                    {
-                        Console.WriteLine("Enter length of table");
-                        tableLength = Convert.ToInt32(Console.ReadLine());
-                    } else if (furnType.ToUpper() == "CHAIR")
-                    {
-                        Console.WriteLine("Does this chair have a back? (true/false)");
-                        chairBack = Convert.ToBoolean(Console.ReadLine());
-                    }
-                    Console.WriteLine($"Enter cost of {furnType}");
-                    float furnCost = Convert.ToSingle(Console.ReadLine());
-
-                    if (furnType.ToUpper() == "TABLE")
-                        if (furnName != null)
-                            Furnitures[i] = new Table(furnName, furnWidth, furnHeight, tableLength, furnCost);
-                        else
-                            Furnitures[i] = new Table("No name", furnWidth, furnHeight, tableLength, furnCost);
-                    else if (furnType.ToUpper() == "CHAIR")
-                        if (furnName != null)
-                            Furnitures[i] = new Chair(furnName, furnWidth, furnHeight, furnCost, chairBack);
-                        else
-                            Furnitures[i] = new Chair("No name", furnWidth, furnHeight, furnCost, chairBack);
-                    else
-                    {
-                        if (furnName != null)
-                            Furnitures[i] = new Table(furnName, furnWidth, furnHeight, tableLength, furnCost);
-                        else
-                            Furnitures[i] = new Table("No name", furnWidth, furnHeight, tableLength, furnCost);
-                    }
-                }
+                    Furnitures[i] = CreateFurniture();
             }
             else
             {
                 Console.WriteLine("Factory is already filled with furniture");
             }
+        }
+
+        public Furniture CreateFurniture()
+        {
+            int tableLength = 0;
+            bool chairBack = false;
+            string? furnType;
+            string? furnName;
+            Furniture furniture;
+
+            Console.WriteLine($"Enter information about item:");
+            do
+            {
+                Console.WriteLine("Is it table or chair?");
+                furnType = Console.ReadLine();
+            } while (furnType == null || furnType == "");
+            do
+            {
+                Console.WriteLine($"Enter name of {furnType}");
+                furnName = Console.ReadLine();
+            } while (furnName == null || furnName == "");
+            Console.WriteLine($"Enter width of {furnType}");
+            int furnWidth = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine($"Enter height of {furnType}");
+            int furnHeight = Convert.ToInt32(Console.ReadLine());
+            if (furnType.ToUpper() == "TABLE")
+            {
+                Console.WriteLine("Enter length of table");
+                tableLength = Convert.ToInt32(Console.ReadLine());
+            }
+            else if (furnType.ToUpper() == "CHAIR")
+            {
+                Console.WriteLine("Does this chair have a back? (true/false)");
+                chairBack = Convert.ToBoolean(Console.ReadLine());
+            }
+            Console.WriteLine($"Enter cost of {furnType}");
+            float furnCost = Convert.ToSingle(Console.ReadLine());
+
+            if (furnType.ToUpper() == "TABLE")
+                if (furnName != null)
+                    furniture = new Table(furnName, furnWidth, furnHeight, tableLength, furnCost);
+                else
+                    furniture = new Table("No name", furnWidth, furnHeight, tableLength, furnCost);
+            else if (furnType.ToUpper() == "CHAIR")
+                if (furnName != null)
+                    furniture = new Chair(furnName, furnWidth, furnHeight, furnCost, chairBack);
+                else
+                    furniture = new Chair("No name", furnWidth, furnHeight, furnCost, chairBack);
+            else
+            {
+                if (furnName != null)
+                    furniture = new Table(furnName, furnWidth, furnHeight, tableLength, furnCost);
+                else
+                    furniture = new Table("No name", furnWidth, furnHeight, tableLength, furnCost);
+            }
+            return furniture;
+        }
+
+        public void AddFurniture()
+        {
+            if (Furnitures != null) {
+                Console.WriteLine("Enter amount of furniture to add to factory:");
+                uint amount = Convert.ToUInt32(Console.ReadLine());
+                Furniture[] newFurnitures = new Furniture[Furnitures.Length + amount];
+                for (int i = 0; i < Furnitures.Length; i++)
+                {
+                    newFurnitures[i] = Furnitures[i];
+                }
+                for (int i = 0; i < newFurnitures.Length - Furnitures.Length; i++)
+                    newFurnitures[i + Furnitures.Length] = CreateFurniture();
+                Furnitures = newFurnitures;
+            } else
+                FillFactory();
         }
     }
 }

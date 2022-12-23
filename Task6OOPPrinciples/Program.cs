@@ -13,6 +13,7 @@ namespace Task6OOPPriciples
             // factoryOfFurniture.FillFactory();
             factoryOfFurniture.ShowAmountOfFurniture();
             factoryOfFurniture.ListOfFurniture();
+            factoryOfFurniture.AddFurniture();
             factoryOfFurniture.AssembleTable();
             factoryOfFurniture.ListOfFurnitureByName();
             factoryOfFurniture.ListOfFurnitureByCost();
