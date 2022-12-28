@@ -5,7 +5,7 @@ using TableNS;
 
 namespace Task6OOPPriciples
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {

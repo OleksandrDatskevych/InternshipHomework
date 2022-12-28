@@ -21,11 +21,13 @@ namespace FactoryNS
                     new Chair("New Line", 50, 60, 8.99f, false),
                     new Table("Table & Chair", 100, 100, 200, 35.99f)
                 };
-            } else
+            }
+            else
             {
-                furniture = null;
+                Console.WriteLine("Empty factory has been created");
             }
         }
+
         public Factory(Furniture[]? furniture)
         {
             Furnitures = furniture;
@@ -38,22 +40,27 @@ namespace FactoryNS
 
         public void ShowAmountOfFurniture()
         {
-            if (Furnitures != null)
+            if (Furnitures is not null)
+            {
                 Console.WriteLine($"Amount of furniture in factory {Furnitures.Length}");
+            }
             else
+            {
                 Console.WriteLine("No furniture in factory");
+            }
         }
 
         public void ListOfFurniture()
         {
-            if (Furnitures != null)
+            if (Furnitures is not null)
             {
                 for (int i = 0; i < Furnitures.Length; i++)
                 {
                     Console.WriteLine($"\nFurniture number: {i + 1}");
                     Furnitures[i].Print();
                 }
-            } else
+            }
+            else
             {
                 Console.WriteLine("No furniture in factory");
             }
@@ -61,14 +68,14 @@ namespace FactoryNS
 
         public void ListOfFurnitureByName()
         {
-            if (Furnitures != null)
+            if (Furnitures is not null)
             {
                 Console.WriteLine("\nEnter a name of furniture to get the list of furniture by name");
-                string? name = Console.ReadLine();
-                bool isFound = false;
+                var name = Console.ReadLine();
+                var isFound = false;
                 for (int i = 0; i < Furnitures.Length; i++)
                 {
-                    if (name != null)
+                    if (name is not null)
                     {
                         if (Furnitures[i].Name.ToUpper() == name.ToUpper())
                         {
@@ -82,11 +89,13 @@ namespace FactoryNS
                         Console.WriteLine("No name entered");
                     }
                 }
+
                 if (!isFound)
                 {
                     Console.WriteLine($"Furniture with name {name} were not found");
                 }
-            } else
+            }
+            else
             {
                 Console.WriteLine("No furniture in factory");
             }
@@ -94,12 +103,12 @@ namespace FactoryNS
 
         public void ListOfFurnitureByCost()
         {
-            if (Furnitures != null)
+            if (Furnitures is not null)
             {
                 Console.WriteLine("\nEnter your estimated budget");
-                float cost = Convert.ToSingle(Console.ReadLine());
+                var cost = Convert.ToSingle(Console.ReadLine());
                 Console.WriteLine("List of furniture in factory:");
-                bool isFound = false;
+                var isFound = false;
                 for (int i = 0; i < Furnitures.Length; i++)
                 {
                     if (Furnitures[i].Cost <= cost)
@@ -109,11 +118,13 @@ namespace FactoryNS
                         Furnitures[i].Print();
                     }
                 }
+
                 if (!isFound)
                 {
                     Console.WriteLine($"Furniture with cost below {cost} were not found");
                 }
-            } else
+            }
+            else
             {
                 Console.WriteLine("No furniture in factory");
             }
@@ -121,16 +132,16 @@ namespace FactoryNS
 
         public void AssembleTable()
         {
-            if (Furnitures != null)
+            if (Furnitures is not null)
             {
                 Console.WriteLine("\nEnter a number of table to assemble:");
-                int furnitureNumber = Convert.ToInt32(Console.ReadLine());
-                if (furnitureNumber <= Furnitures.Length && furnitureNumber > 0 && Furnitures[furnitureNumber - 1] is Table)
+                var furnitureNumber = Convert.ToInt32(Console.ReadLine());
+                if (furnitureNumber <= Furnitures.Length && furnitureNumber > 0 && Furnitures[furnitureNumber - 1] is Table tableTemp)
                 {
-                    Table table = (Table)Furnitures[furnitureNumber - 1];
+                    Table table = tableTemp;
                     table.Assemble();
                 }
-                else if (this.Furnitures[furnitureNumber - 1] is not Table)
+                else if (Furnitures[furnitureNumber - 1] is not Table)
                 {
                     Console.WriteLine($"This furniture is not a table and can't be assembled");
                 }
@@ -143,10 +154,10 @@ namespace FactoryNS
 
         public void FillFactory()
         {
-            if (Furnitures == null)
+            if (Furnitures is null)
             {
                 Console.WriteLine("Enter amount of furniture to fill factory:");
-                uint amount = Convert.ToUInt32(Console.ReadLine());
+                var amount = Convert.ToUInt32(Console.ReadLine());
                 Furnitures = new Furniture[amount];
                 for (int i = 0; i < amount; i++)
                     Furnitures[i] = CreateFurniture();
@@ -157,29 +168,29 @@ namespace FactoryNS
             }
         }
 
-        public Furniture CreateFurniture()
+        public static Furniture CreateFurniture()
         {
-            int tableLength = 0;
-            bool chairBack = false;
+            var tableLength = 0;
+            var chairBack = false;
             string? furnType;
             string? furnName;
-            Furniture furniture;
 
             Console.WriteLine($"Enter information about item:");
             do
             {
                 Console.WriteLine("Is it table or chair?");
                 furnType = Console.ReadLine();
-            } while (furnType == null || furnType == "");
+            } while (furnType is null || furnType == "");
             do
             {
                 Console.WriteLine($"Enter name of {furnType}");
                 furnName = Console.ReadLine();
-            } while (furnName == null || furnName == "");
+            } while (furnName is null || furnName == "");
             Console.WriteLine($"Enter width of {furnType}");
-            int furnWidth = Convert.ToInt32(Console.ReadLine());
+            var furnWidth = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine($"Enter height of {furnType}");
-            int furnHeight = Convert.ToInt32(Console.ReadLine());
+            var furnHeight = Convert.ToInt32(Console.ReadLine());
+
             if (furnType.ToUpper() == "TABLE")
             {
                 Console.WriteLine("Enter length of table");
@@ -190,44 +201,54 @@ namespace FactoryNS
                 Console.WriteLine("Does this chair have a back? (true/false)");
                 chairBack = Convert.ToBoolean(Console.ReadLine());
             }
-            Console.WriteLine($"Enter cost of {furnType}");
-            float furnCost = Convert.ToSingle(Console.ReadLine());
 
-            if (furnType.ToUpper() == "TABLE")
-                if (furnName != null)
-                    furniture = new Table(furnName, furnWidth, furnHeight, tableLength, furnCost);
-                else
-                    furniture = new Table("No name", furnWidth, furnHeight, tableLength, furnCost);
-            else if (furnType.ToUpper() == "CHAIR")
-                if (furnName != null)
-                    furniture = new Chair(furnName, furnWidth, furnHeight, furnCost, chairBack);
-                else
-                    furniture = new Chair("No name", furnWidth, furnHeight, furnCost, chairBack);
-            else
+            Console.WriteLine($"Enter cost of {furnType}");
+            var furnCost = Convert.ToSingle(Console.ReadLine());
+            Furniture furniture = furnType.ToUpper() switch
             {
-                if (furnName != null)
-                    furniture = new Table(furnName, furnWidth, furnHeight, tableLength, furnCost);
-                else
-                    furniture = new Table("No name", furnWidth, furnHeight, tableLength, furnCost);
-            }
+                "TABLE" => furnName switch
+                {
+                    not null => new Table(furnName, furnWidth, furnHeight, tableLength, furnCost),
+                    _ => new Table("No name", furnWidth, furnHeight, tableLength, furnCost)
+                },
+                "CHAIR" => furnName switch
+                {
+                    not null => new Chair(furnName, furnWidth, furnHeight, furnCost, chairBack),
+                    _ => new Chair("No name", furnWidth, furnHeight, furnCost, chairBack)
+                },
+                _ => furnName switch
+                {
+                    not null => new Table(furnName, furnWidth, furnHeight, tableLength, furnCost),
+                    _ => new Table("No name", furnWidth, furnHeight, tableLength, furnCost)
+                }
+            };
+
             return furniture;
         }
 
         public void AddFurniture()
         {
-            if (Furnitures != null) {
+            if (Furnitures is not null)
+            {
                 Console.WriteLine("Enter amount of furniture to add to factory:");
-                uint amount = Convert.ToUInt32(Console.ReadLine());
+                var amount = Convert.ToUInt32(Console.ReadLine());
                 Furniture[] newFurnitures = new Furniture[Furnitures.Length + amount];
                 for (int i = 0; i < Furnitures.Length; i++)
                 {
                     newFurnitures[i] = Furnitures[i];
                 }
+
                 for (int i = 0; i < newFurnitures.Length - Furnitures.Length; i++)
+                {
                     newFurnitures[i + Furnitures.Length] = CreateFurniture();
+                }
+
                 Furnitures = newFurnitures;
-            } else
+            }
+            else
+            {
                 FillFactory();
+            }
         }
     }
 }
