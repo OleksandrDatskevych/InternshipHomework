@@ -1,26 +1,19 @@
 ﻿namespace Task7Part3
 {
-    public class Printer
+    public class Printer : Product, IPrint
     {
-        private int paperWidth;
-        private int paperHeight;
-        private string? modelName;
-        private decimal price;
+        private readonly int paperWidth;
+        private readonly int paperHeight;
 
-        public Printer(string? modelName, decimal price, int paperWidth, int paperHeight)
+        public Printer(string? modelName, decimal price, int paperWidth, int paperHeight) : base(modelName,price)
         {
-            this.modelName = modelName;
-            this.price = price;
             this.paperWidth = paperWidth;
             this.paperHeight = paperHeight;
         }
 
-        public string Description
+        public override string Description
         {
-            get
-            {
-                return $"Price: {price}, model:{modelName}";
-            }
+            get => $"Price: {price}, model:{modelName}, paper width:{paperWidth}, paper height:{paperHeight}";
         }
 
         public void Print()
@@ -28,14 +21,9 @@
             Console.WriteLine("Printing...");
         }
 
-        public void TurnOn()
+        public override void TurnOn()
         {
             Console.WriteLine("Press button at the top");
-        }
-
-        public void TunrnOff()
-        {
-            Console.WriteLine("Press Turn Off button");
         }
     }
 }

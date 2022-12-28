@@ -1,24 +1,17 @@
 ﻿namespace Task7Part3
 {
-    public class MobilePhone
+    public class MobilePhone : Product, IPhoto
     {
-        private double numberOfPixelsInCamera;
-        private string? modelName;
-        private decimal price;
+        private readonly double numberOfPixelsInCamera;
 
-        public MobilePhone(double numberOfPixelsInCamera, string? modelName, decimal price)
+        public MobilePhone(double numberOfPixelsInCamera, string? modelName, decimal price) : base(modelName, price)
         {
             this.numberOfPixelsInCamera = numberOfPixelsInCamera;
-            this.modelName = modelName;
-            this.price = price;
         }
 
-        public string Description
+        public override string Description
         {
-            get
-            {
-                return $"Price: {price}, model:{modelName}, number of pixels in camera: {numberOfPixelsInCamera}";
-            }
+            get => $"Price: {price}, model:{modelName}, number of pixels in camera: {numberOfPixelsInCamera}";
         }
 
         public void TakePhoto()
@@ -26,14 +19,9 @@
             Console.WriteLine("Press button on the screen and photo is ready");
         }
 
-        public void TurnOn()
+        public override void TurnOn()
         {
             Console.WriteLine("Press left side button");
-        }
-
-        public void TunrnOff()
-        {
-            Console.WriteLine("Press Turn Off button");
         }
     }
 }

@@ -1,28 +1,22 @@
 ﻿namespace Task7Part3
 {
-    public class Polaroid
+    public class Polaroid : Product, IPhoto, IPrint
     {
-        private int paperWidth;
-        private int paperHeight;
-        private double numberOfPixelsInCamera;
-        private string? modelName;
-        private decimal price;
+        private readonly int paperWidth;
+        private readonly int paperHeight;
+        private readonly double numberOfPixelsInCamera;
 
-        public Polaroid(int paperWidth, int paperHeight, double numberOfPixelsInCamera, string? modelName, decimal price)
+        public Polaroid(int paperWidth, int paperHeight, double numberOfPixelsInCamera, string? modelName, decimal price) : base(modelName, price)
         {
             this.paperWidth = paperWidth;
             this.paperHeight = paperHeight;
             this.numberOfPixelsInCamera = numberOfPixelsInCamera;
-            this.modelName = modelName;
-            this.price = price;
         }
 
-        public string Description
+        public override string Description
         {
-            get
-            {
-                return $"Price: {price}, model:{modelName}, number of pixels in camera: {numberOfPixelsInCamera}";
-            }
+            get => $"Price: {price}, model:{modelName}, number of pixels in camera: {numberOfPixelsInCamera}, paper width: {paperWidth}, " +
+                $"paper height: {paperHeight}";
         }
 
         public void TakePhoto()
@@ -35,14 +29,9 @@
             Console.WriteLine("Printing...");
         }
 
-        public void TurnOn()
+        public override void TurnOn()
         {
             Console.WriteLine("Press right side button");
-        }
-
-        public void TunrnOff()
-        {
-            Console.WriteLine("Press Turn Off button");
         }
     }
 }

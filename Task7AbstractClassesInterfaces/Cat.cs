@@ -1,6 +1,6 @@
 ﻿namespace Task7AbstractClassesInterfaces
 {
-    public class Cat : Animal, IMove, ISpeak, IAttack
+    public class Cat : Animal
     {
         private string? _color;
 
@@ -16,19 +16,7 @@
             Color = "Black";
         }
 
-        public void Move()
-        {
-            PosX++;
-            PosY++;
-            Console.WriteLine($"Cat {Name} has moved to X:{PosX}, Y:{PosY}");
-        }
-
-        public void MoveForward()
-        {
-            MoveForward(1);
-        }
-
-        public void MoveForward(uint steps)
+        public override void MoveForward(uint steps)
         {
             PosY += (int)steps * 2;
             if (steps == 1)
@@ -41,66 +29,9 @@
             }
         }
 
-        public void MoveTo(int x, int y)
-        {
-            PosX = x;
-            PosY = y;
-            Console.WriteLine($"Cat's position with name {Name} has been changed to X: {PosX}, Y: {PosY}");
-        }
-
-        public void MakeASound()
+        public override void MakeASound()
         {
             Console.WriteLine("Meow");
-        }
-
-        public void AttackToRight(Animal animal)
-        {
-            if (PosX == animal.PosX - 1)
-            {
-                Console.WriteLine($"{Name} (position: X: {PosX}, Y: {PosY}) attacked {animal.Name} (position: X: {animal.PosX}, Y: {animal.PosY})");
-                IAttack.AddAttack();
-            }
-            else
-            {
-                Console.WriteLine($"Cat {Name} has nothing to attack");
-            }
-        }
-
-        public void AttackToLeft(Animal animal)
-        {
-            if (PosX == animal.PosX + 1)
-            {
-                Console.WriteLine($"{Name} (position: X: {PosX}, Y: {PosY}) attacked {animal.Name} (position: X: {animal.PosX}, Y: {animal.PosY})");
-                IAttack.AddAttack();
-            }
-            else
-            {
-                Console.WriteLine($"Cat {Name} has nothing to attack");
-            }
-        }
-
-        public void AttackForward(Animal animal)
-        {
-            if (PosY == animal.PosY - 1)
-            {
-                Console.WriteLine($"{Name} (position: X: {PosX}, Y: {PosY}) attacked {animal.Name} (position: X: {animal.PosX}, Y: {animal.PosY})");
-            }
-            else
-            {
-                Console.WriteLine($"Cat {Name} has nothing to attack");
-            }
-        }
-
-        public void AttackBackward(Animal animal)
-        {
-            if (PosY == animal.PosY + 1)
-            {
-                Console.WriteLine($"{Name} (position: X: {PosX}, Y: {PosY}) attacked {animal.Name} (position: X: {animal.PosX}, Y: {animal.PosY})");
-            }
-            else
-            {
-                Console.WriteLine($"Cat {Name} has nothing to attack");
-            }
         }
 
         public override void PrintDescription()

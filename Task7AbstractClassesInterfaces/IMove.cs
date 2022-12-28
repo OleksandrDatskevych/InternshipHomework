@@ -2,7 +2,6 @@
 {
     internal interface IMove
     {
-        public void Move();
         public void MoveForward();
         public void MoveForward(uint steps);
         public void MoveTo(int x, int y);

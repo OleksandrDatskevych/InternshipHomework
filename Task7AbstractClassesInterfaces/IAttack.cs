@@ -3,10 +3,10 @@
     internal interface IAttack
     {
         private static uint totalAttacksMade = 0;
-        protected void AttackToRight(Animal animal);
-        protected void AttackToLeft(Animal animal);
-        protected void AttackForward(Animal animal);
-        protected void AttackBackward(Animal animal);
+        public void AttackToRight(Animal animal);
+        public void AttackToLeft(Animal animal);
+        public void AttackForward(Animal animal);
+        public void AttackBackward(Animal animal);
 
         protected static void AddAttack()
         {
