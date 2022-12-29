@@ -1,6 +1,6 @@
 ﻿namespace Task7Part4
 {
-    internal class ApartmentBuilding
+    internal class ApartmentBuilding : ICloneable, IComparable<ApartmentBuilding>
     {
         private Apartment[]? _apartments;
         private byte _elevators;
@@ -84,18 +84,24 @@
 
         public void ChangeRoomInfo(int apart, int room, string roomType, float roomArea, byte numWindows)
         {
-            this.Apartments[apart - 1].Rooms[room - 1].RoomType = roomType;
-            this.Apartments[apart - 1].Rooms[room - 1].RoomArea = roomArea;
-            this.Apartments[apart - 1].Rooms[room - 1].NumWindows = numWindows;
+            //this.Apartments[apart - 1].Rooms[room - 1].RoomType = roomType;
+            //this.Apartments[apart - 1].Rooms[room - 1].RoomArea = roomArea;
+            //this.Apartments[apart - 1].Rooms[room - 1].NumWindows = numWindows;
+            Apartments[apart - 1].ChangeRoomInfo(room, roomType, roomArea, numWindows);
             CalculateTotalArea();
             Console.WriteLine("Room info changed");
         }
 
-        public ApartmentBuilding Clone()
+        public object Clone()
         {
             ApartmentBuilding newBuilding = new(this);
 
             return newBuilding;
+        }
+
+        public int CompareTo(ApartmentBuilding? obj)
+        {
+            return TotalArea.CompareTo(obj.TotalArea);
         }
     }
 }

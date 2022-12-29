@@ -46,7 +46,7 @@ internal class Program
         building2.Print();
         Console.ReadKey();
         Console.Clear();
-        ApartmentBuilding building3 = building2.Clone();
+        ApartmentBuilding building3 = (ApartmentBuilding)building2.Clone();
         building3.ChangeRoomInfo(3, 2, "Toilet", 5f, 1);
         Console.WriteLine("BUILDING 3");
         building3.Print();
@@ -56,7 +56,7 @@ internal class Program
         building2.Print();
         Console.ReadKey();
         Console.Clear();
-        ApartmentBuilding building4 = building3.Clone();
+        ApartmentBuilding building4 = (ApartmentBuilding)building3.Clone();
         building4.ChangeRoomInfo(2, 1, "Gym", 10f, 2);
         building4.ChangeRoomInfo(2, 4, "Bedroom", 15f, 2);
         building4.Print();
@@ -70,7 +70,7 @@ internal class Program
             Console.ReadKey();
             Console.Clear();
         }
-        SortByArea(buildings);
+        Array.Sort(buildings);
         Console.WriteLine("Array of building after sorting by area");
         foreach(ApartmentBuilding building in buildings)
         {
@@ -78,24 +78,5 @@ internal class Program
             Console.ReadKey();
             Console.Clear();
         }
-    }
-
-    static void SortByArea(ApartmentBuilding[] buildings)
-    {
-        int swapped = 0;
-        do
-        {
-            swapped = 0;
-            for (int i = 0; i < buildings.Length - 1; i++)
-            {
-                if (buildings[i].TotalArea > buildings[i + 1].TotalArea)
-                {
-                    ApartmentBuilding temp = buildings[i + 1];
-                    buildings[i + 1] = buildings[i];
-                    buildings[i] = temp;
-                    swapped++;
-                }
-            }
-        } while (swapped != 0);
     }
 }

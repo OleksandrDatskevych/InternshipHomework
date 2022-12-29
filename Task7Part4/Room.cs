@@ -6,9 +6,9 @@
         private float _roomArea;
         private byte _numWindows;
 
-        public string? RoomType { get => _roomType; set => _roomType = value; }
-        public float RoomArea { get => _roomArea; set => _roomArea = value; }
-        public byte NumWindows { get => _numWindows; set => _numWindows = value; }
+        public string? RoomType { get => _roomType; private set => _roomType = value; }
+        public float RoomArea { get => _roomArea; private set => _roomArea = value; }
+        public byte NumWindows { get => _numWindows; private set => _numWindows = value; }
 
         public Room()
         {
@@ -34,6 +34,13 @@
         public void Print()
         {
             Console.WriteLine($"Room type: {RoomType}, Room area: {RoomArea}, Number of windows: {NumWindows}");
+        }
+
+        public void ChangeRoomInfo(string roomType, float roomArea, byte numWindows)
+        {
+            RoomType = roomType;
+            RoomArea = roomArea;
+            NumWindows = numWindows;
         }
     }
 }

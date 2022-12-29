@@ -7,7 +7,7 @@
         private bool _separateBathroom;
         private string? _typeOfHeating;
 
-        public Room[]? Rooms { get => _rooms; set => _rooms = value; }
+        public Room[]? Rooms { get => _rooms; private set => _rooms = value; }
         public float CeilingHeight { get => _ceilingHeight; private set => _ceilingHeight = value; }
         public bool SeparateBathroom { get => _separateBathroom; private set => _separateBathroom = value; }
         public string? TypeOfHeating { get => _typeOfHeating; private set => _typeOfHeating = value; }
@@ -61,6 +61,11 @@
             {
                 Console.WriteLine("No rooms in apartment");
             }
+        }
+
+        public void ChangeRoomInfo(int room, string roomType, float roomArea, byte numWindows)
+        {
+            Rooms[room - 1].ChangeRoomInfo(roomType, roomArea, numWindows);
         }
     }
 }
