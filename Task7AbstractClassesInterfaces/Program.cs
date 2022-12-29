@@ -1,6 +1,6 @@
 ﻿using Task7AbstractClassesInterfaces;
 
-class Program
+internal class Program
 {
     static void Main(string[] args)
     {
