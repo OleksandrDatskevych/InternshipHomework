@@ -7,7 +7,7 @@
 
         public abstract string? Description { get; }
 
-        public Product(string? modelName, decimal price)
+        protected Product(string? modelName, decimal price)
         {
             this.modelName = modelName;
             this.price = price;

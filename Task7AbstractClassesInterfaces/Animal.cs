@@ -12,7 +12,7 @@
         public abstract int PosY { get; protected set; }
         protected abstract string? Description { get; }
 
-        public Animal()
+        protected Animal()
         {
             Name = "";
             posX = 0;
@@ -34,98 +34,83 @@
         {
             PosX = x;
             PosY = y;
+            var animalType = "";
             if (this is Cat)
             {
-                Console.WriteLine($"Position of cat named {Name} has been changed to X: {PosX}, Y: {PosY}");
+                animalType = "cat";
             }
             else if (this is Dog)
             {
-                Console.WriteLine($"Position of dog named {Name} has been changed to X: {PosX}, Y: {PosY}");
+                animalType = "dog";
             }
+            Console.WriteLine($"Position of {animalType} named {Name} has been changed to X: {PosX}, Y: {PosY}");
         }
 
         public abstract void MakeASound();
+        public void DoAttack(Animal animal)
+        {
+            Console.WriteLine($"{Name} (position: X: {PosX}, Y: {PosY}) attacked {animal.Name} (position: X: {animal.PosX}, Y: {animal.PosY})");
+            IAttack.AddAttack();
+            MakeASound();
+        }
+
+        public void DontAttack()
+        {
+            if (this is Cat)
+            {
+                Console.WriteLine($"Cat {Name} has nothing to attack");
+            }
+            else if (this is Dog)
+            {
+                Console.WriteLine($"Dog {Name} has nothing to attack");
+            }
+            
+        }
         public void AttackToRight(Animal animal)
         {
-            if (PosX == animal.PosX - 1 || PosY == animal.PosY)
+            if (PosX == animal.PosX - 1 && PosY == animal.PosY)
             {
-                Console.WriteLine($"{Name} (position: X: {PosX}, Y: {PosY}) attacked {animal.Name} (position: X: {animal.PosX}, Y: {animal.PosY})");
-                IAttack.AddAttack();
-                MakeASound();
+                DoAttack(animal);
             }
             else
             {
-                if (this is Cat)
-                {
-                    Console.WriteLine($"Cat {Name} has nothing to attack");
-                }
-                else if (this is Dog)
-                {
-                    Console.WriteLine($"Dog {Name} has nothing to attack");
-                }
+                DontAttack();
             }
         }
 
         public void AttackToLeft(Animal animal)
         {
-            if (PosX == animal.PosX + 1 || PosY == animal.PosY)
+            if (PosX == animal.PosX + 1 && PosY == animal.PosY)
             {
-                Console.WriteLine($"{Name} (position: X: {PosX}, Y: {PosY}) attacked {animal.Name} (position: X: {animal.PosX}, Y: {animal.PosY})");
-                IAttack.AddAttack();
-                MakeASound();
+                DoAttack(animal);
             }
             else
             {
-                if (this is Cat)
-                {
-                    Console.WriteLine($"Cat {Name} has nothing to attack");
-                }
-                else if (this is Dog)
-                {
-                    Console.WriteLine($"Dog {Name} has nothing to attack");
-                }
+                DontAttack();
             }
         }
 
         public void AttackForward(Animal animal)
         {
-            if (PosY == animal.PosY - 1 || PosX == animal.PosX)
+            if (PosY == animal.PosY - 1 && PosX == animal.PosX)
             {
-                Console.WriteLine($"{Name} (position: X: {PosX}, Y: {PosY}) attacked {animal.Name} (position: X: {animal.PosX}, Y: {animal.PosY})");
-                IAttack.AddAttack();
-                MakeASound();
+                DoAttack(animal);
             }
             else
             {
-                if (this is Cat)
-                {
-                    Console.WriteLine($"Cat {Name} has nothing to attack");
-                }
-                else if (this is Dog)
-                {
-                    Console.WriteLine($"Dog {Name} has nothing to attack");
-                }
+                DontAttack();
             }
         }
 
         public void AttackBackward(Animal animal)
         {
-            if (PosY == animal.PosY + 1 || PosX == animal.PosX)
+            if (PosY == animal.PosY + 1 && PosX == animal.PosX)
             {
-                Console.WriteLine($"{Name} (position: X: {PosX}, Y: {PosY}) attacked {animal.Name} (position: X: {animal.PosX}, Y: {animal.PosY})");
-                IAttack.AddAttack();
-                MakeASound();
+                DoAttack(animal);
             }
             else
             {
-                if (this is Cat)
-                {
-                    Console.WriteLine($"Cat {Name} has nothing to attack");
-                }
-                else if (this is Dog)
-                {
-                    Console.WriteLine($"Dog {Name} has nothing to attack");
-                }
+                DontAttack();
             }
         }
     }
