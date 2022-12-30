@@ -18,23 +18,27 @@
             posX = 0;
             posY = 0;
         }
+
         public void PrintPosition()
         {
             Console.WriteLine($"{Name} position is X:{PosX}, Y:{PosY}");
         }
 
         public abstract void PrintDescription();
+
         public void MoveForward()
         {
             MoveForward(1);
         }
 
         public abstract void MoveForward(uint steps);
+
         public void MoveTo(int x, int y)
         {
             PosX = x;
             PosY = y;
             var animalType = "";
+
             if (this is Cat)
             {
                 animalType = "cat";
@@ -47,6 +51,7 @@
         }
 
         public abstract void MakeASound();
+
         public void DoAttack(Animal animal)
         {
             Console.WriteLine($"{Name} (position: X: {PosX}, Y: {PosY}) attacked {animal.Name} (position: X: {animal.PosX}, Y: {animal.PosY})");

@@ -2,16 +2,16 @@
 {
     public class MobilePhone : Product, IPhoto
     {
-        private readonly double numberOfPixelsInCamera;
+        private readonly double _numberOfPixelsInCamera;
 
         public MobilePhone(double numberOfPixelsInCamera, string? modelName, decimal price) : base(modelName, price)
         {
-            this.numberOfPixelsInCamera = numberOfPixelsInCamera;
+            _numberOfPixelsInCamera = numberOfPixelsInCamera;
         }
 
         public override string Description
         {
-            get => $"Price: {price}, model:{modelName}, number of pixels in camera: {numberOfPixelsInCamera}";
+            get => $"Price: {price}, model: {modelName}, number of pixels in camera: {_numberOfPixelsInCamera}";
         }
 
         public void TakePhoto()

@@ -19,6 +19,7 @@
         public override void MoveForward(uint steps)
         {
             PosY += (int)steps * 2;
+
             if (steps == 1)
             {
                 Console.WriteLine($"{Name} moved one step forward");

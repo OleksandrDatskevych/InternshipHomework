@@ -14,7 +14,8 @@ namespace FactoryNS
         {
             if (isFilled)
             {
-                furniture = new Furniture[5] {
+                furniture = new Furniture[5]
+                {
                     new Table(),
                     new Chair(),
                     new Table("Epicenter", 80, 100, 150, 39.99f),
@@ -54,7 +55,7 @@ namespace FactoryNS
         {
             if (Furnitures is not null)
             {
-                for (int i = 0; i < Furnitures.Length; i++)
+                for (var i = 0; i < Furnitures.Length; i++)
                 {
                     Console.WriteLine($"\nFurniture number: {i + 1}");
                     Furnitures[i].Print();
@@ -73,7 +74,8 @@ namespace FactoryNS
                 Console.WriteLine("\nEnter a name of furniture to get the list of furniture by name");
                 var name = Console.ReadLine();
                 var isFound = false;
-                for (int i = 0; i < Furnitures.Length; i++)
+
+                for (var i = 0; i < Furnitures.Length; i++)
                 {
                     if (name is not null)
                     {
@@ -109,7 +111,8 @@ namespace FactoryNS
                 var cost = Convert.ToSingle(Console.ReadLine());
                 Console.WriteLine("List of furniture in factory:");
                 var isFound = false;
-                for (int i = 0; i < Furnitures.Length; i++)
+
+                for (var i = 0; i < Furnitures.Length; i++)
                 {
                     if (Furnitures[i].Cost <= cost)
                     {
@@ -136,6 +139,7 @@ namespace FactoryNS
             {
                 Console.WriteLine("\nEnter a number of table to assemble:");
                 var furnitureNumber = Convert.ToInt32(Console.ReadLine());
+
                 if (furnitureNumber <= Furnitures.Length && furnitureNumber > 0 && Furnitures[furnitureNumber - 1] is Table tableTemp)
                 {
                     Table table = tableTemp;
@@ -159,8 +163,11 @@ namespace FactoryNS
                 Console.WriteLine("Enter amount of furniture to fill factory:");
                 var amount = Convert.ToUInt32(Console.ReadLine());
                 Furnitures = new Furniture[amount];
-                for (int i = 0; i < amount; i++)
+
+                for (var i = 0; i < amount; i++)
+                {
                     Furnitures[i] = CreateFurniture();
+                }
             }
             else
             {
@@ -176,16 +183,19 @@ namespace FactoryNS
             string? furnName;
 
             Console.WriteLine($"Enter information about item:");
+
             do
             {
                 Console.WriteLine("Is it table or chair?");
                 furnType = Console.ReadLine();
             } while (furnType is null || furnType == "");
+
             do
             {
                 Console.WriteLine($"Enter name of {furnType}");
                 furnName = Console.ReadLine();
             } while (furnName is null || furnName == "");
+
             Console.WriteLine($"Enter width of {furnType}");
             var furnWidth = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine($"Enter height of {furnType}");
@@ -233,12 +243,13 @@ namespace FactoryNS
                 Console.WriteLine("Enter amount of furniture to add to factory:");
                 var amount = Convert.ToUInt32(Console.ReadLine());
                 Furniture[] newFurnitures = new Furniture[Furnitures.Length + amount];
-                for (int i = 0; i < Furnitures.Length; i++)
+
+                for (var i = 0; i < Furnitures.Length; i++)
                 {
                     newFurnitures[i] = Furnitures[i];
                 }
 
-                for (int i = 0; i < newFurnitures.Length - Furnitures.Length; i++)
+                for (var i = 0; i < newFurnitures.Length - Furnitures.Length; i++)
                 {
                     newFurnitures[i + Furnitures.Length] = CreateFurniture();
                 }

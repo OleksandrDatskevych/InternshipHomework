@@ -2,21 +2,21 @@
 {
     public class Polaroid : Product, IPhoto, IPrint
     {
-        private readonly int paperWidth;
-        private readonly int paperHeight;
-        private readonly double numberOfPixelsInCamera;
+        private readonly int _paperWidth;
+        private readonly int _paperHeight;
+        private readonly double _numberOfPixelsInCamera;
 
         public Polaroid(int paperWidth, int paperHeight, double numberOfPixelsInCamera, string? modelName, decimal price) : base(modelName, price)
         {
-            this.paperWidth = paperWidth;
-            this.paperHeight = paperHeight;
-            this.numberOfPixelsInCamera = numberOfPixelsInCamera;
+            _paperWidth = paperWidth;
+            _paperHeight = paperHeight;
+            _numberOfPixelsInCamera = numberOfPixelsInCamera;
         }
 
         public override string Description
         {
-            get => $"Price: {price}, model:{modelName}, number of pixels in camera: {numberOfPixelsInCamera}, paper width: {paperWidth}, " +
-                $"paper height: {paperHeight}";
+            get => $"Price: {price}, model: {modelName}, number of pixels in camera: {_numberOfPixelsInCamera}, paper width: {_paperWidth}, " +
+                $"paper height: {_paperHeight}";
         }
 
         public void TakePhoto()
@@ -26,7 +26,7 @@
 
         public void Print()
         {
-            Console.WriteLine("Printing...");
+            Console.WriteLine("Printing photo...");
         }
 
         public override void TurnOn()

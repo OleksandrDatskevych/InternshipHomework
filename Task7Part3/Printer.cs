@@ -2,23 +2,23 @@
 {
     public class Printer : Product, IPrint
     {
-        private readonly int paperWidth;
-        private readonly int paperHeight;
+        private readonly int _paperWidth;
+        private readonly int _paperHeight;
 
         public Printer(string? modelName, decimal price, int paperWidth, int paperHeight) : base(modelName,price)
         {
-            this.paperWidth = paperWidth;
-            this.paperHeight = paperHeight;
+            _paperWidth = paperWidth;
+            _paperHeight = paperHeight;
         }
 
         public override string Description
         {
-            get => $"Price: {price}, model:{modelName}, paper width:{paperWidth}, paper height:{paperHeight}";
+            get => $"Price: {price}, model: {modelName}, paper width: {_paperWidth}, paper height: {_paperHeight}";
         }
 
         public void Print()
         {
-            Console.WriteLine("Printing...");
+            Console.WriteLine("Printing document...");
         }
 
         public override void TurnOn()

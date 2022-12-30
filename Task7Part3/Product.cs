@@ -14,6 +14,7 @@
         }
 
         public abstract void TurnOn();
+
         public void TurnOff()
         {
             Console.WriteLine("Press Turn Off button");

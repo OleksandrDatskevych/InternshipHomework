@@ -23,6 +23,7 @@
 
             set => _name = value;
         }
+
         public int Width { get => _width; protected set => _width = value; }
         public int Height { get => _height; protected set => _height = value; }
         public float Cost { get => _cost; protected set => _cost = value; }

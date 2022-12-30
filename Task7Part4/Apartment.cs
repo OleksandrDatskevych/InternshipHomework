@@ -35,10 +35,12 @@
         public Apartment(Apartment apartment)
         {
             Room[] newRooms = new Room[apartment.Rooms.Length];
-            for (int i = 0; i < apartment.Rooms.Length; i++)
+
+            for (var i = 0; i < apartment.Rooms.Length; i++)
             {
                 newRooms[i] = new(apartment.Rooms[i]);
             }
+
             Rooms = newRooms;
             CeilingHeight = apartment.CeilingHeight;
             SeparateBathroom = apartment.SeparateBathroom;
@@ -51,7 +53,8 @@
             {
                 Console.WriteLine($"Ceiling height: {CeilingHeight}, Separate bathroom: {SeparateBathroom}, typeOfHeating: {TypeOfHeating}, " +
                     $"Number of rooms {Rooms.Length}");
-                for (int i = 0; i < Rooms.Length; i++)
+
+                for (var i = 0; i < Rooms.Length; i++)
                 {
                     Console.WriteLine($"Room {i + 1} info:");
                     Rooms[i].Print();
