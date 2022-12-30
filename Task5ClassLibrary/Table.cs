@@ -29,7 +29,7 @@
             this.width = width;
             this.height = height;
             this.cost = cost;
-            this._isAssembled = false;
+            _isAssembled = false;
         }
 
         public void Print()
@@ -46,7 +46,7 @@
             else
             {
                 Console.WriteLine("Assembling table...");
-                this._isAssembled = true;
+                _isAssembled = true;
                 Console.WriteLine($"Table {name} has been assembled");
             }
         }

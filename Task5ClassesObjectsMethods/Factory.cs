@@ -4,13 +4,18 @@ namespace FactoryNS
 {
     public class Factory
     {
-        public Table[] tables = new Table[5] {
+        public Table[]? tables;
+
+        public Factory()
+        {
+            tables = new Table[5] {
             new Table("Epicenter"),
             new Table("New Line", 250, 100, 35.99f),
             new Table() { width = 100, height = 50, cost = 15.49f },
             new Table(),
             new Table("Table & Chair", 150, 90, 19.99f)
         };
+        }
 
         public static void AssembleTable(Table table)
         {
