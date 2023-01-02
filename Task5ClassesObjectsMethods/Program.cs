@@ -2,11 +2,11 @@
 
 namespace Task5ClassesObjectsMethods
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
-            Factory factoryOfTables = new Factory();
+            Factory factoryOfTables = new();
 
             int amountOfTables = factoryOfTables.GetAmountOfTables();
             Console.WriteLine($"Amount of tables in factory {amountOfTables}");

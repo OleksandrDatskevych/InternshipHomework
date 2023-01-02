@@ -4,15 +4,20 @@ namespace FactoryNS
 {
     public class Factory
     {
-        public Table[] tables = new Table[5] {
+        public Table[]? tables;
+
+        public Factory()
+        {
+            tables = new Table[5] {
             new Table("Epicenter"),
             new Table("New Line", 250, 100, 35.99f),
             new Table() { width = 100, height = 50, cost = 15.49f },
             new Table(),
             new Table("Table & Chair", 150, 90, 19.99f)
         };
+        }
 
-        public void AssembleTable(Table table)
+        public static void AssembleTable(Table table)
         {
             table.Assemble();
         }
@@ -31,21 +36,28 @@ namespace FactoryNS
             }
         }
 
-        public void ListOfTablesByName(string name)
+        public void ListOfTablesByName(string? name)
         {
-            bool isFound = false;
-            for (int i = 0; i < tables.Length; i++)
+            if (name is not null)
             {
-                if (tables[i].name.ToUpper() == name.ToUpper())
+                bool isFound = false;
+                for (int i = 0; i < tables.Length; i++)
                 {
-                    Console.WriteLine($"Table number: {i + 1}");
-                    isFound = true;
-                    tables[i].Print();
+                    if (tables[i].name.ToUpper() == name.ToUpper())
+                    {
+                        Console.WriteLine($"Table number: {i + 1}");
+                        isFound = true;
+                        tables[i].Print();
+                    }
+                }
+                if (!isFound)
+                {
+                    Console.WriteLine($"Tables with name {name} were not found");
                 }
             }
-            if (!isFound)
+            else
             {
-                Console.WriteLine($"Tables with name {name} were not found");
+                Console.WriteLine("Name is null error");
             }
         }
 

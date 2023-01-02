@@ -4,20 +4,18 @@ namespace ChairNS
 {
     public class Chair : Furniture
     {
-        private bool hasBack;
-        public bool HasBack { get => hasBack; private set => hasBack = value; }
+        private bool _hasBack;
+
+        public bool HasBack { get => _hasBack; private set => _hasBack = value; }
 
         public Chair() : base("IKEA", 40, 60, 13.99f)
         {
-            this.HasBack = true;
+            HasBack = true;
         }
+
         public Chair(string name, int width, int height, float cost, bool back) : base(name, width, height, cost)
         {
-            Name = name;
-            this.Width = width;
-            this.Height = height;
-            this.Cost = cost;
-            this.HasBack = back;
+            HasBack = back;
         }
 
         public override void Print()
