@@ -84,9 +84,7 @@ internal class Program
         };
 
         Console.WriteLine("Sort by area");
-        var orderByArea = from city in mapCity
-                          orderby city.Value.Area
-                          select city;
+        var orderByArea = (from city in mapCity orderby city.Value.Area select city).ToList();
 
         foreach (var city in orderByArea)
         {
@@ -94,9 +92,7 @@ internal class Program
         }
 
         Console.WriteLine("\nSort by population, descending");
-        var orderByPopulation = from city in mapCity
-                                orderby city.Value.Population descending
-                                select city;
+        var orderByPopulation = (from city in mapCity orderby city.Value.Population descending select city).ToList();
 
         foreach (var city in orderByPopulation)
         {
@@ -104,18 +100,12 @@ internal class Program
         }
 
         var totalPopulation = 0;
-        var cityPop = from city in mapCity
-                      select city.Value.Population;
+        var cityPop = from city in mapCity select city.Value.Population;
 
         foreach (var pop in cityPop)
         {
             totalPopulation += pop;
         }
-
-        //foreach (var city in mapCity)
-        //{
-        //    totalPopulation += city.Value.population;
-        //}
 
         Console.WriteLine($"\nTotal population: {totalPopulation}");
     }
@@ -181,6 +171,7 @@ internal class Program
     static Queue<int> FillQueue(int capacity)
     {
         Queue<int> queue = new();
+
         while (queue.Count < capacity)
         {
             Console.WriteLine("Enter number:");
@@ -204,6 +195,7 @@ internal class Program
             {
                 max = item;
             }
+
             enumerator.MoveNext();
         }
 
@@ -238,7 +230,7 @@ internal class Program
         {
             Console.WriteLine("Enter 3 letter word:");
             word = Console.ReadLine() ?? throw new ArgumentNullException();
-        } while (word.Length != 3 || word == string.Empty || word == null);
+        } while (word.Length != 3 || word == string.Empty || word is null);
 
         foreach (char ch in word)
         {
@@ -258,12 +250,8 @@ internal class Program
     static Dictionary<int,string> SortMergeLists(List<int> keys, List<string> values)
     {
         Dictionary<int, string> mergedMap = new();
-        var keysSorted = (from key in keys
-                         orderby key
-                         select key).ToList();
-        var valuesSorted = (from value in values
-                            orderby value descending
-                            select value).ToList();
+        var keysSorted = (from key in keys orderby key select key).ToList();
+        var valuesSorted = (from value in values orderby value descending select value).ToList();
 
         for (var i = 0; i < keys.Count; i++)
         {
