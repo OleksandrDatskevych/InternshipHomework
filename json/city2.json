@@ -1,0 +1,12 @@
+{
+  "cityName": "Kherson",
+  "id": 12,
+  "isOkay": true,
+  "dateTime": "2022-11-11T07:30:00",
+  "listOfPeople": [
+    {
+      "age": 54,
+      "name": "Serhii"
+    }
+  ]
+}
