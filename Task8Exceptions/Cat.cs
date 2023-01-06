@@ -6,9 +6,9 @@
         private string? _color;
         private byte _age;
 
-        public string? Name { get => _name; private set => _name = value; }
-        public string? Color { get => _color; private set => _color = value; }
-        public byte Age { get => _age; private set => _age = value; }
+        public string? Name { get; private set; }
+        public string? Color { get; private set; }
+        public byte Age { get; private set; }
 
         public Cat()
         {
@@ -48,11 +48,6 @@
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
                 Console.WriteLine($"Total number of input exceptions threw: {InputException.exceptionsThrew}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.StackTrace);
             }
         }
     }

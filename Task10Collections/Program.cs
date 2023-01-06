@@ -41,7 +41,7 @@ internal class Program
         Queue<int> queue = FillQueue(5);
         var max = GetMaxValue(queue);
         Console.WriteLine($"Max value: {max}");
-        DeleteMaxValue(queue);
+        DeleteMaxValue(ref queue);
         max = GetMaxValue(queue);
         Console.WriteLine($"Max value: {max}");
         max = GetMaxValue(queue);
@@ -114,7 +114,7 @@ internal class Program
     {
         var sum = 0;
 
-        foreach(int i in list)
+        foreach(var i in list)
         {
             if (i % 2 == 0)
             {
@@ -130,7 +130,7 @@ internal class Program
         Console.WriteLine("Enter lenght of word: ");
         var len = int.Parse(Console.ReadLine());
 
-        foreach(string word in list)
+        foreach(var word in list)
         {
             if (word.Length == len)
             {
@@ -157,7 +157,7 @@ internal class Program
     {
         LinkedList<int> result = new();
 
-        foreach(int i in list1)
+        foreach(var i in list1)
         {
             if (list2.Contains(i))
             {
@@ -174,7 +174,7 @@ internal class Program
 
         while (queue.Count < capacity)
         {
-            Console.WriteLine("Enter number:");
+            Console.WriteLine("Enter number to enqueue:");
             var number = int.Parse(Console.ReadLine());
             queue.Enqueue(number);
         }
@@ -185,40 +185,36 @@ internal class Program
     static int GetMaxValue(Queue<int> queue)
     {
         var max = queue.Peek();
-        IEnumerator<int> enumerator = queue.GetEnumerator();
 
-        while (enumerator.MoveNext())
+        foreach(var item in queue)
         {
-            var item = enumerator.Current;
-
             if (item > max)
             {
                 max = item;
             }
-
-            enumerator.MoveNext();
         }
-
-        enumerator.Reset();
 
         return max;
     }
 
-    static void DeleteMaxValue(Queue<int> queue)
+    static void DeleteMaxValue(ref Queue<int> queue)
     {
         var max = GetMaxValue(queue);
         Queue<int> newQueue = new();
 
-        if (queue.Peek() == max)
+        while (queue.Count > 0)
         {
-            queue.Dequeue();
-        }
-        else
-        {
-            newQueue.Enqueue(queue.Dequeue());
+            if (queue.Peek() == max)
+            {
+                queue.Dequeue();
+            }
+            else
+            {
+                newQueue.Enqueue(queue.Dequeue());
+            }
         }
 
-        queue = newQueue;
+        queue = new Queue<int>(newQueue);
     }
 
     static void ReverseWord()
@@ -237,7 +233,7 @@ internal class Program
             stack.Push(ch);
         }
 
-        var newWord = "";
+        var newWord = string.Empty;
 
         while(stack.Count > 0)
         {

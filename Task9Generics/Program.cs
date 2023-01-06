@@ -16,8 +16,11 @@ internal class Program
             Console.WriteLine(humans.ToString());
             var defaultHumans = GenerateHumans<Woman>(8);
             Console.WriteLine(defaultHumans.ToString());
+            foreach (var i in humans)
+            {
+                Console.WriteLine(i.ToString());
+            }
         }
-
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);

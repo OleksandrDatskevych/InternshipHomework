@@ -12,9 +12,10 @@
         {
 
         }
+
         public override string ToString()
         {
-            var info = $"First name: {FirstName}, Last name {LastName}, Sex: Man";
+            var info = $"First name: {FirstName}, Last name: {LastName}, Sex: Man";
 
             return info;
         }

@@ -15,7 +15,7 @@
 
         public override string ToString()
         {
-            var info = $"First name: {FirstName}, Last name {LastName}, Sex: Woman";
+            var info = $"First name: {FirstName}, Last name: {LastName}, Sex: Woman";
 
             return info;
         }

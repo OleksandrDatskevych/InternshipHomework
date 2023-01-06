@@ -5,8 +5,8 @@
         protected string? _firstName;
         protected string? _lastName;
 
-        public string? FirstName { get => _firstName; protected set => _firstName = value; }
-        public string? LastName { get => _lastName; protected set => _lastName = value; }
+        public string? FirstName { get; protected set; }
+        public string? LastName { get; protected set; }
 
         protected Human()
         {

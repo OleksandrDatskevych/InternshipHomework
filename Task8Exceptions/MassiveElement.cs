@@ -2,7 +2,6 @@
 {
     internal class MassiveElement
     {
-
         public MassiveElement()
         {
 
@@ -14,14 +13,33 @@
             {
                 int[] massive = { 8, 7, 1, 4, 2 };
                 Console.WriteLine("Input index of element in massive:");
-                string? inputtedValue = Console.ReadLine();
-                string? checkedValue = inputtedValue.Equals(string.Empty) ? null : inputtedValue;
-                int inputtedNumber = Int32.Parse(checkedValue);
-                int massiveElement = massive[inputtedNumber];
+                var inputtedValue = Console.ReadLine();
+                var checkedValue = inputtedValue.Equals(string.Empty) ? null : inputtedValue;
+                var inputtedNumber = int.Parse(checkedValue);
+                var massiveElement = massive[inputtedNumber];
                 Console.WriteLine($"Massive element that has index {inputtedValue} has value {massiveElement}");
             }
-
-            catch (Exception ex)
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
+            catch (ArgumentNullException ex)
             {
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);

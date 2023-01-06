@@ -1,12 +1,15 @@
-﻿using System.Linq.Expressions;
+﻿using System.Collections;
+using System.Linq.Expressions;
 
 namespace Task9Generics
 {
-    internal class GenericArray<T> where T : Human
+    internal class GenericArray<T> : IEnumerable where T : Human
     {
         private T[]? _arrayOfElements;
 
-        public T[]? ArrayOfElements { get => _arrayOfElements; private set => _arrayOfElements = value; }
+        public T[]? ArrayOfElements { get; private set; }
+
+        public IEnumerator GetEnumerator() => ArrayOfElements.GetEnumerator();
 
         public GenericArray()
         {
@@ -18,7 +21,7 @@ namespace Task9Generics
             ArrayOfElements = array;
         }
 
-        public void GetElementByIndex(int index)
+        public T GetElementByIndex(int index)
         {
             if (ArrayOfElements is null)
             {
@@ -26,11 +29,11 @@ namespace Task9Generics
             }
             else
             {
-                Console.WriteLine($"Element at index {index} is {ArrayOfElements[index]}");
+                return ArrayOfElements[index];
             }
         }
 
-        public void GetElementCount()
+        public int GetElementCount()
         {
             if (ArrayOfElements is null)
             {
@@ -38,7 +41,7 @@ namespace Task9Generics
             }
             else
             {
-                Console.WriteLine($"Total elements in array: {ArrayOfElements.Length}");
+                return ArrayOfElements.Length;
             }
         }
 
@@ -102,7 +105,7 @@ namespace Task9Generics
 
         public override string ToString()
         {
-            string? info = string.Empty;
+            var info = string.Empty;
 
             if (ArrayOfElements is not null)
             {
