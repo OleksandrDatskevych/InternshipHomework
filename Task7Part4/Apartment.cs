@@ -2,15 +2,10 @@
 {
     internal class Apartment
     {
-        private Room[]? _rooms;
-        private float _ceilingHeight;
-        private bool _separateBathroom;
-        private string? _typeOfHeating;
-
-        public Room[]? Rooms { get => _rooms; private set => _rooms = value; }
-        public float CeilingHeight { get => _ceilingHeight; private set => _ceilingHeight = value; }
-        public bool SeparateBathroom { get => _separateBathroom; private set => _separateBathroom = value; }
-        public string? TypeOfHeating { get => _typeOfHeating; private set => _typeOfHeating = value; }
+        public Room[]? Rooms { get; private set; }
+        public float CeilingHeight { get; private set; }
+        public bool SeparateBathroom { get; private set; }
+        public string? TypeOfHeating { get; private set; }
 
         public Apartment()
         {

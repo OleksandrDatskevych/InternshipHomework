@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.Design;
-using Task9Generics;
+﻿using Task9Generics;
 
 internal class Program
 {

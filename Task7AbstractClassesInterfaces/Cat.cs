@@ -2,12 +2,10 @@
 {
     public class Cat : Animal
     {
-        private string? _color;
-
-        public string? Color { get => _color; private set => _color = value; }
-        public override string? Name { get => name; protected set => name = value; }
-        public override int PosX { get => posX; protected set => posX = value; }
-        public override int PosY { get => posY; protected set => posY = value; }
+        public string? Color { get; private set; }
+        public override string? Name { get; protected set; }
+        public override int PosX { get; protected set; }
+        public override int PosY { get; protected set; }
         protected override string? Description { get => $"Name: {Name}\nColor: {Color}\nPosition: X:{PosX}, Y:{PosY}"; }
 
         public Cat() : base()

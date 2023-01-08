@@ -2,11 +2,8 @@
 {
     internal class City
     {
-        private int population;
-        private double area;
-
-        public int Population { get => population; private set => population = value; }
-        public double Area { get => area; private set => area = value; }
+        public int Population { get; private set; }
+        public double Area { get; private set; }
 
         public City(int population, double area)
         {

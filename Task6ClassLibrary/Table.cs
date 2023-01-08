@@ -4,11 +4,8 @@ namespace TableNS
 {
     public class Table : Furniture
     {
-        private bool _isAssembled;
-        private int _length;
-
-        public int Length { get => _length; private set => _length = value; }
-        public bool IsAssembled { get => _isAssembled; private set => _isAssembled = value; }
+        public int Length { get; private set; }
+        public bool IsAssembled { get; private set; }
 
         public Table() : base("IKEA", 80, 80, 39.99f)
         {

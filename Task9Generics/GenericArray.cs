@@ -1,12 +1,9 @@
 ﻿using System.Collections;
-using System.Linq.Expressions;
 
 namespace Task9Generics
 {
     internal class GenericArray<T> : IEnumerable where T : Human
     {
-        private T[]? _arrayOfElements;
-
         public T[]? ArrayOfElements { get; private set; }
 
         public IEnumerator GetEnumerator() => ArrayOfElements.GetEnumerator();

@@ -7,7 +7,7 @@
         protected int posY;
         protected string? description;
 
-        public abstract string Name { get; protected set; }
+        public abstract string? Name { get; protected set; }
         public abstract int PosX { get; protected set; }
         public abstract int PosY { get; protected set; }
         protected abstract string? Description { get; }

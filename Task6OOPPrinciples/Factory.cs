@@ -6,15 +6,13 @@ namespace FactoryNS
 {
     internal class Factory
     {
-        private Furniture[]? furniture;
-
-        public Furniture[]? Furnitures { get => furniture; private set => furniture = value; }
+        public Furniture[]? Furnitures { get; private set; }
 
         public Factory(bool isFilled)
         {
             if (isFilled)
             {
-                furniture = new Furniture[5]
+                Furnitures = new Furniture[5]
                 {
                     new Table(),
                     new Chair(),

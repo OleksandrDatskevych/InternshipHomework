@@ -1,7 +1,4 @@
-﻿using ChairNS;
-using FactoryNS;
-using FurnitureNS;
-using TableNS;
+﻿using FactoryNS;
 
 namespace Task6OOPPriciples
 {
