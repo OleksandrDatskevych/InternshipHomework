@@ -2,12 +2,10 @@
 {
     public class Dog : Animal
     {
-        private uint _tailLenght;
-
-        public uint TailLenght { get => _tailLenght; private set => _tailLenght = value; }
-        public override string? Name { get => name; protected set => name = value; }
-        public override int PosX { get => posX; protected set => posX = value; }
-        public override int PosY { get => posY; protected set => posY = value; }
+        public uint TailLenght { get; private set; }
+        public override string? Name { get; protected set; }
+        public override int PosX { get; protected set; }
+        public override int PosY { get; protected set; }
         protected override string? Description { get => $"Name: {Name}\nTail length: {TailLenght}\nPosition: X:{PosX}, Y:{PosY}"; }
 
         public Dog() : base()

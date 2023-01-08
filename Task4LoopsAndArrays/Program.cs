@@ -3,7 +3,6 @@
     static void Main(string[] args)
     {
         // 1
-
         Console.WriteLine("Enter positive number: ");
         var number = Convert.ToInt32(Console.ReadLine());
         var sumResult = 0;
@@ -16,7 +15,6 @@
         Console.WriteLine($"Result: {sumResult}");
 
         // 2
-
         Console.WriteLine("Multiplication table for the number 3: ");
         var num = 3;
         var multiplier = 1;
@@ -29,7 +27,6 @@
         }
 
         // 3
-
         int[] arrayToMultiply = { 3, 5, 9, 8, 15 };
         var multResult2 = 1;
 
@@ -41,7 +38,6 @@
         Console.WriteLine($"Multiplication result of elements in array: {multResult2}\n");
 
         // 4
-
         var num2 = 2048;
         var divider = 2;
         var divResult = 0;
@@ -55,7 +51,6 @@
         Console.WriteLine($"Number {num2} must be divided {divResult} times to make it less than 10\n");
 
         // 5
-
         string[] strings = { "Goodbye", "Good morning", "Viskas gerai", "Hello", "Labanakt" };
 
         foreach (var word in strings)
@@ -68,13 +63,11 @@
         }
 
         // 6
-
         int[] numbers = { 6, 2, 7, 8, 9, 13, 5, 3, 11, 72, 4 };
         sumResult = numbers[0] + numbers[numbers.Length - 1];
         Console.WriteLine($"Sum result of first and last elements of array: {sumResult}");
 
         // 7
-
         var maxIndex = 0;
         var minIndex = 0;
         var maxValue = numbers[0];
@@ -103,7 +96,6 @@
         Console.WriteLine($"Minimum element: {minValue}\nMaximim element: {maxValue}\nSum of indexes of these elements: {sumOfIndexes}");
 
         // 8
-
         int[] numsToSort = { 6, 2, 7, 0, 8, 9, 13, 5, 1, 16, 6, 2, 3, 7, 3, 2 };
         Console.WriteLine("\nArray before sort");
 
@@ -135,7 +127,6 @@
         }
 
         // 9
-
         Console.ReadKey();
         Console.Clear();
         int a;
@@ -156,7 +147,6 @@
         }
 
         // 10
-
         Console.ReadKey();
         Console.Clear();
         int[,] twoDimArray = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
@@ -172,7 +162,6 @@
         }
 
         // 11
-
         int[] array = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
         // add number 11 to end of the array

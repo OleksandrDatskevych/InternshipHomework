@@ -1,7 +1,5 @@
 ﻿using Task12JSON;
 using System.Text.Json;
-using System.Runtime.InteropServices;
-using System.Text.Json.Serialization;
 
 internal class Program
 {
@@ -15,7 +13,7 @@ internal class Program
         };
         City city = new("Kherson", 12, false, DateTime.Parse("2022-02-24 05:30"), listOfPeople);
         var pathToSolution = "C:\\Users\\oleksandr.datskevych\\source\\repos\\InternshipHomework\\";
-        var options = new JsonSerializerOptions { WriteIndented = true, IncludeFields = true };
+        var options = new JsonSerializerOptions { WriteIndented = true };
         var fileName = pathToSolution + "json\\city.json";
         string jsonString = JsonSerializer.Serialize(city, options);
         File.WriteAllText(fileName, jsonString);
@@ -24,10 +22,10 @@ internal class Program
         File.WriteAllText(fileName2, jsonString2);
         var fileName3 = pathToSolution + "\\json\\city2.json";
         City? city2 = JsonSerializer.Deserialize<City>(File.ReadAllText(fileName3), options);
-        Console.WriteLine($"ID: {city2.id}\nCity: {city2.cityName}\nDate: {city2.dateTime}\nIsOkay: {city2.isOkay}\n" +
-            $"1st person:\n{city2.listOfPeople[0].name} {city2.listOfPeople[0].age}");
+        Console.WriteLine($"ID: {city2.Id}\nCity: {city2.CityName}\nDate: {city2.DateAndTime}\nIsOkay: {city2.IsOkay}\n" +
+            $"1st person:\n{city2.ListOfPeople[0].Name} {city2.ListOfPeople[0].Age}");
         var fileName4 = pathToSolution + "json\\listOfPeople2.json";
         List<Person>? listOfPeople2 = JsonSerializer.Deserialize<List<Person>>(File.ReadAllText(fileName4), options);
-        Console.WriteLine($"Person in list:\nAge: {listOfPeople2[0].age}, Name: {listOfPeople2[0].name}");
+        Console.WriteLine($"Person in list:\nAge: {listOfPeople2[0].Age}, Name: {listOfPeople2[0].Name}");
     }
 }

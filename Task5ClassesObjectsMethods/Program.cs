@@ -16,7 +16,7 @@ namespace Task5ClassesObjectsMethods
 
             if ((tableNumber <= amountOfTables) & (tableNumber > 0))
             {
-                factoryOfTables.tables[tableNumber - 1].Assemble();
+                factoryOfTables.Tables[tableNumber - 1].Assemble();
             }
             else
             {

@@ -4,15 +4,15 @@ namespace FactoryNS
 {
     public class Factory
     {
-        public Table[]? tables;
+        public Table[]? Tables { get; set; }
 
         public Factory()
         {
-            tables = new Table[5]
+            Tables = new Table[5]
             {
                 new Table("Epicenter"),
                 new Table("New Line", 250, 100, 35.99f),
-                new Table() { width = 100, height = 50, cost = 15.49f },
+                new Table() { Width = 100, Height = 50, Cost = 15.49f },
                 new Table(),
                 new Table("Table & Chair", 150, 90, 19.99f)
             };
@@ -25,15 +25,15 @@ namespace FactoryNS
 
         public int GetAmountOfTables()
         {
-            return tables.Length;
+            return Tables.Length;
         }
 
         public void ListOfTables()
         {
-            for (var i = 0; i < tables.Length; i++)
+            for (var i = 0; i < Tables.Length; i++)
             {
                 Console.WriteLine($"\nTable number: {i + 1}");
-                tables[i].Print();
+                Tables[i].Print();
             }
         }
 
@@ -41,15 +41,15 @@ namespace FactoryNS
         {
             if (name is not null)
             {
-                bool isFound = false;
+                var isFound = false;
 
-                for (var i = 0; i < tables.Length; i++)
+                for (var i = 0; i < Tables.Length; i++)
                 {
-                    if (tables[i].name.ToUpper() == name.ToUpper())
+                    if (Tables[i].Name.ToUpper() == name.ToUpper())
                     {
                         Console.WriteLine($"Table number: {i + 1}");
                         isFound = true;
-                        tables[i].Print();
+                        Tables[i].Print();
                     }
                 }
 
@@ -66,15 +66,15 @@ namespace FactoryNS
 
         public void ListOfTablesByCost(float cost)
         {
-            bool isFound = false;
+            var isFound = false;
 
-            for (var i = 0; i < tables.Length; i++)
+            for (var i = 0; i < Tables.Length; i++)
             {
-                if (tables[i].cost <= cost)
+                if (Tables[i].Cost <= cost)
                 {
                     Console.WriteLine($"Table number: {i + 1}");
                     isFound = true;
-                    tables[i].Print();
+                    Tables[i].Print();
                 }
             }
 

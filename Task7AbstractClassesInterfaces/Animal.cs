@@ -2,12 +2,7 @@
 {
     public abstract class Animal : IMove, ISpeak, IAttack
     {
-        protected string? name;
-        protected int posX;
-        protected int posY;
-        protected string? description;
-
-        public abstract string Name { get; protected set; }
+        public abstract string? Name { get; protected set; }
         public abstract int PosX { get; protected set; }
         public abstract int PosY { get; protected set; }
         protected abstract string? Description { get; }
@@ -15,8 +10,8 @@
         protected Animal()
         {
             Name = "";
-            posX = 0;
-            posY = 0;
+            PosX = 0;
+            PosY = 0;
         }
 
         public void PrintPosition()

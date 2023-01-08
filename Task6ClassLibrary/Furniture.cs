@@ -2,9 +2,6 @@
 {
     public class Furniture
     {
-        private float _cost;
-        private int _height;
-        private int _width;
         private string? _name;
 
         public string Name
@@ -24,16 +21,16 @@
             set => _name = value;
         }
 
-        public int Width { get => _width; protected set => _width = value; }
-        public int Height { get => _height; protected set => _height = value; }
-        public float Cost { get => _cost; protected set => _cost = value; }
+        public int Width { get; protected set; }
+        public int Height { get; protected set; }
+        public float Cost { get; protected set; }
 
         public Furniture()
         {
-            _name = "IKEA";
-            _width = 50;
-            _height = 70;
-            _cost = 19.99f;
+            Name = "IKEA";
+            Width = 50;
+            Height = 70;
+            Cost = 19.99f;
         }
 
         public Furniture(string name, int width, int height, float cost)

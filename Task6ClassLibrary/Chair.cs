@@ -4,9 +4,7 @@ namespace ChairNS
 {
     public class Chair : Furniture
     {
-        private bool _hasBack;
-
-        public bool HasBack { get => _hasBack; private set => _hasBack = value; }
+        public bool HasBack { get; private set; }
 
         public Chair() : base("IKEA", 40, 60, 13.99f)
         {

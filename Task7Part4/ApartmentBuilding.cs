@@ -2,17 +2,11 @@
 {
     internal class ApartmentBuilding : ICloneable, IComparable<ApartmentBuilding>
     {
-        private Apartment[]? _apartments;
-        private byte _elevators;
-        private byte _entrances;
-        private byte _floors;
-        private float _totalArea;
-
-        public Apartment[]? Apartments { get => _apartments; private set => _apartments = value; }
-        public byte Elevators { get => _elevators; private set => _elevators = value; }
-        public byte Entrances { get => _entrances; private set => _entrances = value; }
-        public byte Floors { get => _floors; private set => _floors = value; }
-        public float TotalArea { get => _totalArea; private set => _totalArea = value; }
+        public Apartment[]? Apartments { get; private set; }
+        public byte Elevators { get; private set; }
+        public byte Entrances { get; private set; }
+        public byte Floors { get; private set; }
+        public float TotalArea { get; private set; }
 
         public ApartmentBuilding()
         {

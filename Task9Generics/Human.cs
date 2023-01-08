@@ -2,9 +2,6 @@
 {
     internal abstract class Human
     {
-        protected string? _firstName;
-        protected string? _lastName;
-
         public string? FirstName { get; protected set; }
         public string? LastName { get; protected set; }
 

@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Xml.Linq;
-using System.Linq;
-using Task10Collections;
+﻿using Task10Collections;
 
 internal class Program
 {
@@ -12,12 +9,12 @@ internal class Program
         Console.WriteLine(SumOfEven(list));
         List<string> words = new() { "Viskas", "Gerai", "Labanakt", "Kariotiškės", "Pasivaikščioti", "Ačiū", "Sveiki", "Dėkoju", "Labas" };
         FilterWords(words);
+
         // LINKED LIST
         LinkedList<int> list2 = new(list);
         var item1 = 4;
         var item2 = 10;
         AddItemsToLinkedList(list2, item1, item2);
-
         var node = list2.First;
 
         while (node != null)
@@ -39,11 +36,21 @@ internal class Program
 
         // QUEUE & STACK
         Queue<int> queue = FillQueue(5);
+
+        foreach (var i in queue)
+        {
+            Console.Write($"{i} ");
+        }
+
         var max = GetMaxValue(queue);
         Console.WriteLine($"Max value: {max}");
         DeleteMaxValue(ref queue);
-        max = GetMaxValue(queue);
-        Console.WriteLine($"Max value: {max}");
+
+        foreach (var i in queue)
+        {
+            Console.Write($"{i} ");
+        }
+
         max = GetMaxValue(queue);
         Console.WriteLine($"Max value: {max}");
         ReverseWord();
@@ -82,7 +89,6 @@ internal class Program
             { "Lviv", new City(721, 149) },
             { "Kharkiv", new City(1419, 350) }
         };
-
         Console.WriteLine("Sort by area");
         var orderByArea = (from city in mapCity orderby city.Value.Area select city).ToList();
 
@@ -114,7 +120,7 @@ internal class Program
     {
         var sum = 0;
 
-        foreach(var i in list)
+        foreach (var i in list)
         {
             if (i % 2 == 0)
             {
@@ -130,7 +136,7 @@ internal class Program
         Console.WriteLine("Enter lenght of word: ");
         var len = int.Parse(Console.ReadLine());
 
-        foreach(var word in list)
+        foreach (var word in list)
         {
             if (word.Length == len)
             {
@@ -157,7 +163,7 @@ internal class Program
     {
         LinkedList<int> result = new();
 
-        foreach(var i in list1)
+        foreach (var i in list1)
         {
             if (list2.Contains(i))
             {
@@ -186,7 +192,7 @@ internal class Program
     {
         var max = queue.Peek();
 
-        foreach(var item in queue)
+        foreach (var item in queue)
         {
             if (item > max)
             {
@@ -228,7 +234,7 @@ internal class Program
             word = Console.ReadLine() ?? throw new ArgumentNullException();
         } while (word.Length != 3 || word == string.Empty || word is null);
 
-        foreach (char ch in word)
+        foreach (var ch in word)
         {
             stack.Push(ch);
         }
@@ -240,7 +246,7 @@ internal class Program
             newWord += stack.Pop();
         }
 
-        Console.WriteLine(newWord);
+        Console.WriteLine($"Reversed word: {newWord}");
     }
 
     static Dictionary<int,string> SortMergeLists(List<int> keys, List<string> values)

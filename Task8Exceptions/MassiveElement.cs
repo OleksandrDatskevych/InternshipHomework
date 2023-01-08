@@ -2,6 +2,8 @@
 {
     internal class MassiveElement
     {
+        public static int[] massive = { 8, 7, 1, 4, 2 };
+
         public MassiveElement()
         {
 
@@ -11,7 +13,6 @@
         {
             try
             {
-                int[] massive = { 8, 7, 1, 4, 2 };
                 Console.WriteLine("Input index of element in massive:");
                 var inputtedValue = Console.ReadLine();
                 var checkedValue = inputtedValue.Equals(string.Empty) ? null : inputtedValue;

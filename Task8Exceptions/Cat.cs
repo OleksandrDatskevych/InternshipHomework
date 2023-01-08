@@ -2,10 +2,6 @@
 {
     internal class Cat
     {
-        private string? _name;
-        private string? _color;
-        private byte _age;
-
         public string? Name { get; private set; }
         public string? Color { get; private set; }
         public byte Age { get; private set; }
@@ -48,6 +44,11 @@
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
                 Console.WriteLine($"Total number of input exceptions threw: {InputException.exceptionsThrew}");
+            }
+            catch (OverflowException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
             }
         }
     }

@@ -2,13 +2,9 @@
 {
     internal class Room
     {
-        private string? _roomType;
-        private float _roomArea;
-        private byte _numWindows;
-
-        public string? RoomType { get => _roomType; private set => _roomType = value; }
-        public float RoomArea { get => _roomArea; private set => _roomArea = value; }
-        public byte NumWindows { get => _numWindows; private set => _numWindows = value; }
+        public string? RoomType { get; private set; }
+        public float RoomArea { get; private set; }
+        public byte NumWindows { get; private set; }
 
         public Room()
         {
