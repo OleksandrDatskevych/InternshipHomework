@@ -1,12 +1,13 @@
 ﻿using System.Text.RegularExpressions;
 
-internal class Program
+internal static class Program
 {
     static void Main(string[] args)
     {
         // 1
         List<int> numbers = new() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-        var result = from i in numbers where i % 2 == 0 select i;
+        //var result = from i in numbers where i % 2 == 0 select i;
+        var result = from i in numbers.Even() select i;
 
         foreach (var i in result)
         {
@@ -16,7 +17,8 @@ internal class Program
         // 2
         Console.WriteLine();
         List<int> numbers2 = new() { 1, 3, -2, -4, -7, -3, -8, 12, 19, 6, 9, 10, 14 };
-        var result2 = from i in numbers2 where i > 0 where i >= 1 && i <= 11 select i;
+        //var result2 = from i in numbers2 where i > 0 where i >= 1 && i <= 11 select i;
+        var result2 = from i in numbers2.PositiveInRange(1, 11) select i;
         Console.WriteLine();
 
         foreach (var i in result2)
@@ -96,6 +98,46 @@ internal class Program
         foreach (var i in result8)
         {
             Console.WriteLine(i);
+        }
+
+        var words2 = from i in cities.FilterByLength(6) orderby i descending select i;
+
+        foreach (var i in words2)
+        {
+            Console.WriteLine(i);
+        }
+    }
+
+    public static IEnumerable<int> Even(this IEnumerable<int> source)
+    {
+        foreach (var i in source)
+        {
+            if (i % 2 == 0)
+            {
+                yield return i;
+            }
+        }
+    }
+
+    public static IEnumerable<string> FilterByLength(this IEnumerable<string> source, uint count)
+    {
+        foreach (var i in source)
+        {
+            if (i.Length == count)
+            {
+                yield return i;
+            }
+        }
+    }
+
+    public static IEnumerable<int> PositiveInRange(this IEnumerable<int> source, int firstNumber, int finalNumber)
+    {
+        foreach (var i in source)
+        {
+            if (i > 0 && i >= firstNumber && i <= finalNumber)
+            {
+                yield return i;
+            }
         }
     }
 }
