@@ -1,15 +1,12 @@
-﻿using ChairNS;
-using FactoryNS;
-using FurnitureNS;
-using TableNS;
+﻿using FactoryNS;
 
 namespace Task6OOPPriciples
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
-            Factory factoryOfFurniture = new(true);
+            Factory factoryOfFurniture = new(false);
             // factoryOfFurniture.FillFactory();
             factoryOfFurniture.ShowAmountOfFurniture();
             factoryOfFurniture.ListOfFurniture();

@@ -4,63 +4,80 @@ namespace FactoryNS
 {
     public class Factory
     {
-        public Table[] tables = new Table[5] {
-            new Table("Epicenter"),
-            new Table("New Line", 250, 100, 35.99f),
-            new Table() { width = 100, height = 50, cost = 15.49f },
-            new Table(),
-            new Table("Table & Chair", 150, 90, 19.99f)
-        };
+        public Table[]? Tables { get; set; }
 
-        public void AssembleTable(Table table)
+        public Factory()
+        {
+            Tables = new Table[5]
+            {
+                new Table("Epicenter"),
+                new Table("New Line", 250, 100, 35.99f),
+                new Table() { Width = 100, Height = 50, Cost = 15.49f },
+                new Table(),
+                new Table("Table & Chair", 150, 90, 19.99f)
+            };
+        }
+
+        public static void AssembleTable(Table table)
         {
             table.Assemble();
         }
 
         public int GetAmountOfTables()
         {
-            return tables.Length;
+            return Tables.Length;
         }
 
         public void ListOfTables()
         {
-            for (int i = 0; i < tables.Length; i++)
+            for (var i = 0; i < Tables.Length; i++)
             {
                 Console.WriteLine($"\nTable number: {i + 1}");
-                tables[i].Print();
+                Tables[i].Print();
             }
         }
 
-        public void ListOfTablesByName(string name)
+        public void ListOfTablesByName(string? name)
         {
-            bool isFound = false;
-            for (int i = 0; i < tables.Length; i++)
+            if (name is not null)
             {
-                if (tables[i].name.ToUpper() == name.ToUpper())
+                var isFound = false;
+
+                for (var i = 0; i < Tables.Length; i++)
                 {
-                    Console.WriteLine($"Table number: {i + 1}");
-                    isFound = true;
-                    tables[i].Print();
+                    if (Tables[i].Name.ToUpper() == name.ToUpper())
+                    {
+                        Console.WriteLine($"Table number: {i + 1}");
+                        isFound = true;
+                        Tables[i].Print();
+                    }
+                }
+
+                if (!isFound)
+                {
+                    Console.WriteLine($"Tables with name {name} were not found");
                 }
             }
-            if (!isFound)
+            else
             {
-                Console.WriteLine($"Tables with name {name} were not found");
+                Console.WriteLine("Name is null error");
             }
         }
 
         public void ListOfTablesByCost(float cost)
         {
-            bool isFound = false;
-            for (int i = 0; i < tables.Length; i++)
+            var isFound = false;
+
+            for (var i = 0; i < Tables.Length; i++)
             {
-                if (tables[i].cost <= cost)
+                if (Tables[i].Cost <= cost)
                 {
                     Console.WriteLine($"Table number: {i + 1}");
                     isFound = true;
-                    tables[i].Print();
+                    Tables[i].Print();
                 }
             }
+
             if (!isFound)
             {
                 Console.WriteLine($"Tables with cost below {cost} were not found");

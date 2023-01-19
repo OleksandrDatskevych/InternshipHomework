@@ -1,0 +1,20 @@
+{
+  "CityName": "Kherson",
+  "Id": 12,
+  "IsOkay": false,
+  "DateAndTime": "2022-02-24T05:30:00",
+  "ListOfPeople": [
+    {
+      "Age": 26,
+      "Name": "Oleksandr"
+    },
+    {
+      "Age": 27,
+      "Name": "Oleksandr"
+    },
+    {
+      "Age": 53,
+      "Name": "Serhii"
+    }
+  ]
+}
